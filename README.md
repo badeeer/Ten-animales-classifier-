@@ -52,3 +52,29 @@ These imports set the stage for various operations related to data manipulation,
 
 - Finally, the code prints the number of files in each set, providing an overview of how many images are available for each class within the training, validation, and test sets.
 
+  ## Display Random Images from a Class
+
+- `train_dir`: Specifies the path to the training dataset directory, which is "/kaggle/working/dataset/train".
+
+- `class_folders`: Lists the subfolders (class folders) within the training directory by using `os.listdir(train_dir)`.
+
+- `random_class`: Chooses a random class (subfolder) from the list of class folders using `random.choice(class_folders)`.
+
+- `class_dir`: Generates the path to the directory of the randomly selected class by joining `train_dir` and `random_class`.
+
+- `image_files`: Lists the image files within the selected class directory using `os.listdir(class_dir)`.
+
+- `random_images`: Randomly selects five images from the list of image files using `random.sample(image_files, 5)`.
+
+- Display Random Images: The code sets up a Matplotlib figure to display the selected images. It creates a row of subplots with a total of 5 subplots (one for each image).
+
+  - For each selected image, it loads the image using `mpimg.imread(img_path)`.
+  - It then adds the image to the corresponding subplot using `plt.imshow(img)`.
+  - The image filename is set as the title of the subplot with `plt.title(image_file)`.
+  - The axes (axis ticks and labels) are turned off using `plt.axis('off')`.
+
+- Finally, it displays the figure containing the selected images with `plt.show()`.
+
+This code snippet is used to visualize five random images from a randomly selected class within the training dataset, providing a visual representation of the data.
+
+
