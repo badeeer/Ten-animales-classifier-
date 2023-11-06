@@ -78,3 +78,20 @@ These imports set the stage for various operations related to data manipulation,
 This code snippet is used to visualize five random images from a randomly selected class within the training dataset, providing a visual representation of the data.
 
 
+## Convert to TensorFlow Datasets
+
+- `test_dir`, `train_dir`, and `validation_dir` are set to the directories containing the testing, training, and validation datasets, respectively, within the working directory.
+
+- `batch_size` is defined as 32, specifying the number of images to process in each batch during training and evaluation.
+
+- `image_size` is set to (180, 180), representing the desired size for the input images. You can adjust this size based on your specific requirements.
+
+- The code loads the datasets using `tf.keras.utils.image_dataset_from_directory`, which is a convenient way to create TensorFlow datasets from image files within directories.
+
+- `train_dataset` is created by loading images from the `train_dir`. The images are resized to the specified `image_size`, grouped into batches of `batch_size`, shuffled (with `shuffle=True`), and a seed of 42 is used for reproducibility.
+
+- `validation_dataset` is similarly created from the `validation_dir`, but it's not shuffled since shuffling is generally not necessary for validation data.
+
+- `test_dataset` is created from the `test_dir`, similar to the validation dataset. It is also not shuffled.
+
+This section of the code converts the training, validation, and test datasets into TensorFlow datasets, making them suitable for use in training and evaluating machine learning models using TensorFlow.
