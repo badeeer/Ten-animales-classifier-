@@ -116,5 +116,13 @@ This section of the code converts the training, validation, and test datasets in
 
 - `model = keras.Model(inputs=inputs, outputs=outputs)`: The code creates a model using the defined input and output layers, producing a complete neural network model.
 
-This code snippet defines a CNN model architecture for image classification, with convolutional layers to extract features and a dense output layer for class prediction.
+
+
+- `model.summary()`: This code snippet prints a summary of the neural network model's architecture and parameters.
+
+- The summary provides details for each layer in the model, including the layer's name, type, output shape, and the number of parameters.
+
+- It helps you understand the structure of the model, visualize the flow of data through the layers, and assess the complexity of the model.
+
+- This information is crucial for model evaluation and debugging, as it allows you to check if the model is constructed as intended and verify the number of trainable parameters.
 
