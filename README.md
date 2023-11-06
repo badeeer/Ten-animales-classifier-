@@ -95,3 +95,26 @@ This code snippet is used to visualize five random images from a randomly select
 - `test_dataset` is created from the `test_dir`, similar to the validation dataset. It is also not shuffled.
 
 This section of the code converts the training, validation, and test datasets into TensorFlow datasets, making them suitable for use in training and evaluating machine learning models using TensorFlow.
+
+## Build the Model
+
+- `inputs`: Defines the input layer for the model with a shape of (180, 180, 3), which corresponds to images with dimensions 180x180 pixels and three color channels (RGB).
+
+- `x = layers.Rescaling(1./255)(inputs)`: Rescales the input data to the [0, 1] range by dividing each pixel value by 255. This step is common preprocessing for image data to ensure it's in the appropriate range.
+
+- The code defines a series of convolutional layers (`Conv2D`) and max-pooling layers (`MaxPool2D`) to create a Convolutional Neural Network (CNN) model.
+
+  - `layers.Conv2D(filters=32, kernel_size=3, activation="relu")(inputs)`: The first convolutional layer with 32 filters, a 3x3 kernel size, and ReLU activation function.
+
+  - `layers.MaxPool2D(pool_size=2)(x)`: The first max-pooling layer with a 2x2 pool size.
+
+  - Several more convolutional and max-pooling layers are defined with increasing numbers of filters (64, 128, 256) and ReLU activations.
+
+  - `layers.Flatten()`: Flattens the output from the convolutional layers into a 1D vector to prepare it for the dense layers.
+
+- `outputs = layers.Dense(10, activation="softmax")(x)`: The output layer is a dense layer with 10 units (representing the 10 possible classes) and a softmax activation function, which is suitable for multi-class classification.
+
+- `model = keras.Model(inputs=inputs, outputs=outputs)`: The code creates a model using the defined input and output layers, producing a complete neural network model.
+
+This code snippet defines a CNN model architecture for image classification, with convolutional layers to extract features and a dense output layer for class prediction.
+
