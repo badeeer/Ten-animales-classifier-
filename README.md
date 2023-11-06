@@ -126,3 +126,57 @@ This section of the code converts the training, validation, and test datasets in
 
 - This information is crucial for model evaluation and debugging, as it allows you to check if the model is constructed as intended and verify the number of trainable parameters.
 
+## Plot Model Architecture
+
+- `keras.utils.plot_model(model, "animals_model.png", show_shapes=True)`: This code generates a graphical representation of the model's architecture and saves it as an image file named "animals_model.png."
+
+- `model`: The model whose architecture you want to visualize.
+
+- `"animals_model.png"`: The name of the output image file where the model's architecture diagram will be saved.
+
+- `show_shapes=True`: This parameter specifies that the shapes of the layers will be displayed in the diagram, which can be useful for understanding the dimensions of data as it flows through the layers.
+
+- The generated diagram typically shows the structure of the model, including the input and output layers, as well as the connections between layers. It provides a visual representation of how data flows through the neural network.
+
+- This visualization is helpful for understanding the model's complexity, identifying any issues in the architecture, and communicating the model's structure to others.
+
+## Model Configuration for Training
+
+- `model.compile()`: This code is used to configure the model for training by specifying important settings, including the loss function, optimizer, and evaluation metrics.
+
+- `loss='sparse_categorical_crossentropy'`: The loss function is set to "sparse_categorical_crossentropy." This loss is commonly used for multi-class classification tasks when the target labels are integers. It measures the dissimilarity between the predicted class probabilities and the true labels.
+
+- `optimizer=keras.optimizers.RMSprop(learning_rate=1e-5)`: The optimizer is set to RMSprop with a specified learning rate of 1e-5. The optimizer is responsible for updating the model's weights during training to minimize the loss function.
+
+- `metrics=["accuracy"]`: The evaluation metric used during training is accuracy. This metric measures how well the model is performing by calculating the proportion of correctly predicted class labels.
+
+- Configuring the model in this way is a crucial step before training. It defines the objective and methodology for updating the model's parameters to learn from the training data.
+
+## Callbacks for Model Training
+
+- Callbacks in machine learning are functions that can be applied at different stages of the training process to customize and control the training procedure. They are commonly used for tasks such as early stopping and model checkpointing.
+
+- `keras.callbacks.EarlyStopping` is used to define an early stopping callback. It monitors the validation loss and stops training if the validation loss does not improve for a certain number of epochs.
+
+  - `monitor='val_loss'`: The callback monitors the validation loss to decide when to stop training.
+
+  - `patience=10`: It waits for 10 epochs with no improvement in the validation loss before stopping the training.
+
+  - `restore_best_weights=True`: When training stops, it restores the model's weights to the best weights achieved during training. This helps prevent overfitting.
+
+- `keras.callbacks.ModelCheckpoint` is used to define a model checkpoint callback. It saves the model's weights during training at specified checkpoints.
+
+  - `filepath="convnet_from_scratch.keras"`: The path where the model's weights will be saved. In this case, they will be saved to a file named "convnet_from_scratch.keras."
+
+  - `save_best_only=True`: It saves only the best model weights based on the validation loss. This ensures that you have the best-performing model saved.
+
+  - `monitor="val_loss"`: The validation loss is used as the criterion for determining the best model.
+
+- `callbacks = [early_stop, model_checkpoint]`: Both the early stopping and model checkpoint callbacks are combined into a list of callbacks to be used during model training.
+
+- `model.fit()`: This method is used to train the model with the provided training dataset. The training process will run for 50 epochs and will use the validation dataset for monitoring and applying the defined callbacks.
+
+- The `history` variable stores information about the training process, such as the training and validation loss and accuracy, and can be used for visualization and analysis.
+
+These callbacks help to improve the training process by preventing overfitting (early stopping) and ensuring the best model weights are saved for future use (model checkpoint).
+
