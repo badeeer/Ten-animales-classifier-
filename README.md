@@ -180,3 +180,22 @@ This section of the code converts the training, validation, and test datasets in
 
 These callbacks help to improve the training process by preventing overfitting (early stopping) and ensuring the best model weights are saved for future use (model checkpoint).
 
+## Leveraging a Pretrained Model
+
+- Leveraging a pretrained model is a common technique in deep learning, where you use a pre-trained neural network as a feature extractor or starting point for your specific task. In this case, the code is using the VGG16 model, which has been pretrained on a large dataset.
+
+- `pre_model = keras.applications.vgg16.VGG16(
+    weights="imagenet",
+    include_top=False,
+    input_shape=(180, 180, 3)
+)`: This code creates a VGG16 model that has been pretrained on the "ImageNet" dataset.
+
+  - `weights="imagenet"`: Specifies that the model should be initialized with the pre-trained weights from the ImageNet dataset. These weights have been learned from a massive collection of images and can capture a wide range of visual features.
+
+  - `include_top=False`: This option excludes the final classification layer (top layer) from the VGG16 model. This is common when you want to use the model as a feature extractor or fine-tune it for a specific task.
+
+  - `input_shape=(180, 180, 3)`: Specifies the shape of the input data expected by the VGG16 model. In this case, it's set to (180, 180, 3), which matches the input size used in the previous part of the code.
+
+- By using a pretrained model like VGG16, you can benefit from the knowledge and features learned from a vast number of images, which can be especially helpful when you have limited data for your specific task.
+
+- After creating `pre_model`, you can use it to extract features from your data or fine-tune it for your classification task.
